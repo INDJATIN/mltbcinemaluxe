@@ -94,8 +94,8 @@ async def stats(_, message):
 
 async def start(client, message):
     buttons = ButtonMaker()
-    buttons.ubutton("Repo", "https://www.github.com/anasty17/mirror-leech-telegram-bot")
-    buttons.ubutton("Owner", "https://t.me/anas_tayyar")
+    buttons.ubutton("Website", "https://www.cinemaluxe.site")
+    buttons.ubutton("Owner", "https://t.me/Cinema_Luxe_Admin")
     reply_markup = buttons.build_menu(2)
     if await CustomFilters.authorized(client, message):
         start_string = f"""
@@ -106,14 +106,14 @@ Type /{BotCommands.HelpCommand} to get a list of available commands
     else:
         await sendMessage(
             message,
-            "You Are not authorized user! Deploy your own mirror-leech bot",
+            "this bot is owned by cinemaluxe you can this bot from @Cinema_Luxe_Admin",
             reply_markup,
         )
 
 
 async def restart(_, message):
     Intervals["stopAll"] = True
-    restart_message = await sendMessage(message, "Restarting...")
+    restart_message = await sendMessage(message, "Restarting... please Wait")
     if scheduler.running:
         scheduler.shutdown(wait=False)
     if qb := Intervals["qb"]:
@@ -199,7 +199,7 @@ async def restart_notification():
 
     async def send_incompelete_task_message(cid, msg):
         try:
-            if msg.startswith("Restarted Successfully!"):
+            if msg.startswith("Restarted Successfully! Owned By CinemaLuxe"):
                 await bot.edit_message_text(
                     chat_id=chat_id, message_id=msg_id, text=msg
                 )
@@ -231,7 +231,7 @@ async def restart_notification():
     if await aiopath.isfile(".restartmsg"):
         try:
             await bot.edit_message_text(
-                chat_id=chat_id, message_id=msg_id, text="Restarted Successfully!"
+                chat_id=chat_id, message_id=msg_id, text="Restarted Successfully! Owned By CinemaLuxe"
             )
         except:
             pass
